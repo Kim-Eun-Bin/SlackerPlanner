@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
@@ -18,6 +19,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class CalendarFragment : Fragment() {
+    val itemList = arrayListOf<Date>()
+    val listAdapter = CalendarAdapter(itemList)
     lateinit var month_year_tv: TextView
     lateinit var calendarList: RecyclerView
     lateinit var today_btn: Button
@@ -39,6 +42,15 @@ class CalendarFragment : Fragment() {
             }
         }
 
+        listAdapter.setItemClickListener(object: CalendarAdapter.OnItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                CalendarUtils.selectedDate = LocalDate.of(LocalDate.now().year, LocalDate.now().month, Integer.parseInt(itemList[position].date))
+                listAdapter.notifyDataSetChanged()
+                smoothScroller.targetPosition = CalendarUtils.selectedDate.dayOfMonth - 1
+                mLayoutManager.startSmoothScroll(smoothScroller)
+            }
+        })
+
         // recyclerView orientation
         mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         calendarList.layoutManager = mLayoutManager
@@ -52,7 +64,6 @@ class CalendarFragment : Fragment() {
     }
 
     fun setListView() {
-        val list: ArrayList<Date> = arrayListOf()
         val lastDayOfMonth = Integer.parseInt(CalendarUtils.lastDayOfMonth(LocalDate.now()))
 
         for(i: Int in 1..lastDayOfMonth) {
@@ -60,11 +71,9 @@ class CalendarFragment : Fragment() {
             val dayOfWeek: DayOfWeek = date.dayOfWeek
             dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US)
 
-            list.add(Date(dayOfWeek.toString().substring(0, 3), i.toString()))
+            itemList.add(Date(dayOfWeek.toString().substring(0, 3), i.toString()))
         }
-
-        val adapter = CalendarAdapter(list)
-        calendarList.adapter = adapter
+        calendarList.adapter = listAdapter
 
         smoothScroller.targetPosition = CalendarUtils.selectedDate.dayOfMonth - 1
         mLayoutManager.startSmoothScroll(smoothScroller)

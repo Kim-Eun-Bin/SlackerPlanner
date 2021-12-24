@@ -12,10 +12,19 @@ import com.example.slackerplanner.R
 
 class CalendarAdapter(private val dataSet: ArrayList<Date>): RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
     var drawable: Drawable? = null
+    private lateinit var itemClickListener : OnItemClickListener
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val date_tv: TextView = view.findViewById(R.id.date_cell)
         val day_tv: TextView = view.findViewById(R.id.day_cell)
+    }
+
+    interface OnItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -33,6 +42,10 @@ class CalendarAdapter(private val dataSet: ArrayList<Date>): RecyclerView.Adapte
             holder.date_tv.background = drawable
         } else {
             holder.date_tv.background = null
+        }
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
         }
     }
 

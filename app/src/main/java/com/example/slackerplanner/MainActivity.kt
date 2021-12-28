@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
-import com.example.slackerplanner.Calendar.CalendarFragment
+import com.example.slackerplanner.calendar.CalendarFragment
+import com.example.slackerplanner.memo.MemoFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.slackerplanner.Calendar
+package com.example.slackerplanner.calendar
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

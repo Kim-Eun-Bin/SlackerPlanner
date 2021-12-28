@@ -1,22 +1,22 @@
-package com.example.slackerplanner.Calendar
+package com.example.slackerplanner.memo
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.slackerplanner.R
 
-class CalendarAdapter(private val dataSet: ArrayList<Date>): RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
+class MemoAdapter(private val dataSet: ArrayList<String>): RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
     var drawable: Drawable? = null
     private lateinit var itemClickListener : OnItemClickListener
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val date_tv: TextView = view.findViewById(R.id.date_cell)
-        val day_tv: TextView = view.findViewById(R.id.day_cell)
+        val memo_tv: TextView = view.findViewById(R.id.memo_tv)
+        val memo_check: CheckBox = view.findViewById(R.id.memo_check)
     }
 
     interface OnItemClickListener {
@@ -28,21 +28,14 @@ class CalendarAdapter(private val dataSet: ArrayList<Date>): RecyclerView.Adapte
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.calendar_cell, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.memo_cell, viewGroup, false)
 
-        drawable = ContextCompat.getDrawable(view.context, R.drawable.round)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.date_tv.text = dataSet[position].date
-        holder.day_tv.text = dataSet[position].day
-
-        if(dataSet[position].date == CalendarUtils.selectedDate.dayOfMonth.toString()) {
-            holder.date_tv.background = drawable
-        } else {
-            holder.date_tv.background = null
-        }
+        holder.memo_tv.text = dataSet[position]
+//        holder.memo_check.isChecked = dataSet[position]
 
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)

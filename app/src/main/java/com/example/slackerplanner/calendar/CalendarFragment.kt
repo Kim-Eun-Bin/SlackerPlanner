@@ -1,4 +1,4 @@
-package com.example.slackerplanner.Calendar
+package com.example.slackerplanner.calendar
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
@@ -16,7 +15,6 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.*
-import kotlin.collections.ArrayList
 
 class CalendarFragment : Fragment() {
     val itemList = arrayListOf<Date>()

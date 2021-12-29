@@ -14,8 +14,8 @@ class CalendarAdapter(private val dataSet: ArrayList<Date>): RecyclerView.Adapte
     private lateinit var itemClickListener : OnItemClickListener
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val date_tv: TextView = view.findViewById(R.id.date_cell)
-        val day_tv: TextView = view.findViewById(R.id.day_cell)
+        val dateTv: TextView = view.findViewById(R.id.date_cell)
+        val dayTv: TextView = view.findViewById(R.id.day_cell)
     }
 
     interface OnItemClickListener {
@@ -34,13 +34,13 @@ class CalendarAdapter(private val dataSet: ArrayList<Date>): RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.date_tv.text = dataSet[position].date
-        holder.day_tv.text = dataSet[position].day
+        holder.dateTv.text = dataSet[position].date
+        holder.dayTv.text = dataSet[position].day
 
         if(dataSet[position].date == CalendarUtils.selectedDate.dayOfMonth.toString()) {
-            holder.date_tv.background = drawable
+            holder.dateTv.background = drawable
         } else {
-            holder.date_tv.background = null
+            holder.dateTv.background = null
         }
 
         holder.itemView.setOnClickListener {

@@ -1,28 +1,22 @@
 package com.example.slackerplanner.memo
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.slackerplanner.R
-import java.time.LocalDate
 
 class MemoFragment : Fragment() {
-    private val itemList = arrayListOf<Memo>()
+    private val itemList = arrayListOf<String>()
     private val listAdapter = MemoAdapter(itemList)
     private lateinit var memoList: RecyclerView
     private lateinit var addBtn: Button
     lateinit var mLayoutManager: LinearLayoutManager
-    private val memoFragmentDialog: MemoFragmentDialog = MemoFragmentDialog()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,34 +33,32 @@ class MemoFragment : Fragment() {
         memoList.layoutManager = mLayoutManager
 
         setListView()
-        setOnClickEvent(view)
+        setOnClickEvent()
 
         return view
     }
 
     private fun setListView() {
-        val memo = Memo("exercise",false)
-        itemList.add(memo)
-        itemList.add(memo)
-        itemList.add(memo)
-        itemList.add(memo)
-        itemList.add(memo)
+        itemList.add("exercise")
+        itemList.add("exercise")
+        itemList.add("exercise")
+        itemList.add("exercise")
+        itemList.add("exercise")
 
         memoList.adapter = listAdapter
         // TODO
     }
 
-    private fun setOnClickEvent(view: View) {
+    private fun setOnClickEvent() {
         listAdapter.setItemClickListener(object: MemoAdapter.OnItemClickListener {
             override fun onClick(view: View, position: Int) {
                 super.onClick(view, position)
-                Toast.makeText(context, "toast", Toast.LENGTH_LONG).show()
                 listAdapter.notifyDataSetChanged()
             }
         })
 
-        addBtn.setOnClickListener{
-            memoFragmentDialog.show(requireActivity().supportFragmentManager, "memo dialog")
+        addBtn.setOnClickListener {
+            // TODO
         }
     }
 }

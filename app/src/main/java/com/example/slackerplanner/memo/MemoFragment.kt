@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.slackerplanner.R
@@ -17,6 +16,7 @@ class MemoFragment : Fragment() {
     private lateinit var memoList: RecyclerView
     private lateinit var addBtn: Button
     lateinit var mLayoutManager: LinearLayoutManager
+    private val memoDialogFragment: MemoFragmentDialog = MemoFragmentDialog()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +58,7 @@ class MemoFragment : Fragment() {
         })
 
         addBtn.setOnClickListener {
-            // TODO
+            memoDialogFragment.show(requireActivity().supportFragmentManager, "memo dialog")
         }
     }
 }

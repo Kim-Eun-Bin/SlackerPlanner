@@ -3,8 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/checkbox_custom.xml" value="0.40520833333333334" />
-        <entry key="app/src/main/res/drawable/ic_baseline_check_circle_outline_24.xml" value="0.40520833333333334" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/drawable/ic_pencil.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/drawable/item_select.xml" value="0.35555555555555557" />
@@ -13,6 +11,7 @@
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/calendar_cell.xml" value="0.296195652173913" />
+        <entry key="app/src/main/res/layout/calendar_dialog.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/fragment_memo.xml" value="0.296195652173913" />

@@ -22,8 +22,10 @@ class CalendarFragment : Fragment() {
     private lateinit var monthYearTv: TextView
     lateinit var calendarList: RecyclerView
     private lateinit var todayBtn: Button
+    private lateinit var addBtn: Button
     lateinit var smoothScroller: LinearSmoothScroller
     lateinit var mLayoutManager: LinearLayoutManager
+    val calendarFragmentDialog: CalendarFragmentDialog = CalendarFragmentDialog()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -33,6 +35,7 @@ class CalendarFragment : Fragment() {
 
         monthYearTv = view.findViewById(R.id.month_year_tv)
         todayBtn = view.findViewById(R.id.today_btn)
+        addBtn = view.findViewById(R.id.add_btn)
 
         smoothScroller = object: LinearSmoothScroller(view.context) {
             override fun getHorizontalSnapPreference(): Int {
@@ -82,6 +85,10 @@ class CalendarFragment : Fragment() {
             smoothScroller.targetPosition = LocalDate.now().dayOfMonth - 1
             mLayoutManager.startSmoothScroll(smoothScroller)
             CalendarUtils.selectedDate = LocalDate.now()
+        }
+
+        addBtn.setOnClickListener{
+            calendarFragmentDialog.show(requireActivity().supportFragmentManager, "calendar dialog")
         }
     }
 }

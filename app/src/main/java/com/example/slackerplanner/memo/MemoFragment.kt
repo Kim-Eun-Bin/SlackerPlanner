@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.slackerplanner.R
 
 class MemoFragment : Fragment() {
-    private val itemList = arrayListOf<String>()
-    private val listAdapter = MemoAdapter(itemList)
+    private val listAdapter = MemoAdapter(MemoList.memoList)
     private lateinit var memoList: RecyclerView
     private lateinit var addBtn: Button
     lateinit var mLayoutManager: LinearLayoutManager
@@ -39,11 +38,7 @@ class MemoFragment : Fragment() {
     }
 
     private fun setListView() {
-        itemList.add("exercise")
-        itemList.add("exercise")
-        itemList.add("exercise")
-        itemList.add("exercise")
-        itemList.add("exercise")
+        MemoList.memoList.add("exercise")
 
         memoList.adapter = listAdapter
         // TODO

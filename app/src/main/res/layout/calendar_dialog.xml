@@ -36,7 +36,7 @@
         android:text="END" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/calendar_content_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

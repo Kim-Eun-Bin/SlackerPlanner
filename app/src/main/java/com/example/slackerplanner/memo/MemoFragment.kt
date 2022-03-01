@@ -1,5 +1,6 @@
 package com.example.slackerplanner.memo
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,7 +39,12 @@ class MemoFragment : Fragment() {
     }
 
     private fun setListView() {
-        MemoList.memoList.add("exercise")
+        val sharedPref = activity?.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        val temp: String? = sharedPref?.getString("content", "")
+
+        if (temp != null) {
+            MemoList.memoList.add(temp)
+        }
 
         memoList.adapter = listAdapter
         // TODO

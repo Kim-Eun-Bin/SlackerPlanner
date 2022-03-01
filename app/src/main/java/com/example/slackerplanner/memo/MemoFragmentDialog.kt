@@ -1,5 +1,6 @@
 package com.example.slackerplanner.memo
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,8 +30,13 @@ class MemoFragmentDialog: DialogFragment() {
         cancelBtn = view.findViewById(R.id.cancel_btn)
         contentEt = view.findViewById(R.id.content_et)
 
+        val sharedPref = activity?.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        val editor = sharedPref?.edit()
+
         saveBtn.setOnClickListener{
-            MemoList.memoList.add(contentEt.text.toString())
+//            MemoList.memoList.add(contentEt.text.toString())
+            editor?.putString("content", contentEt.text.toString())
+            editor?.apply()
             contentEt.text = null
             Toast.makeText(view.context, "save", Toast.LENGTH_LONG).show()
             dismiss()
